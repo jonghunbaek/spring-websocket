@@ -2,10 +2,10 @@ package com.example.springwebsocket.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 @Slf4j
-@RestController
+@Controller
 public class MessageController {
 
     @MessageMapping("/message")
