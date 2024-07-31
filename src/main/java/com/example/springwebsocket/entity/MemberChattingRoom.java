@@ -1,6 +1,7 @@
 package com.example.springwebsocket.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,4 +18,10 @@ public class MemberChattingRoom {
 
     @ManyToOne
     private ChattingRoom chattingRoom;
+
+    @Builder
+    private MemberChattingRoom(Member member, ChattingRoom chattingRoom) {
+        this.member = member;
+        this.chattingRoom = chattingRoom;
+    }
 }
