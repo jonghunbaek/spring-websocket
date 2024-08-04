@@ -13,6 +13,8 @@ public class Chatting {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String content;
+
     @ManyToOne
     private Member member;
 
@@ -20,7 +22,8 @@ public class Chatting {
     private ChattingRoom chattingRoom;
 
     @Builder
-    private Chatting(Member member, ChattingRoom chattingRoom) {
+    private Chatting(String content, Member member, ChattingRoom chattingRoom) {
+        this.content = content;
         this.member = member;
         this.chattingRoom = chattingRoom;
     }
