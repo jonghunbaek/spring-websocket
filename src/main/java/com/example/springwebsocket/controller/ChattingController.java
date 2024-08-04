@@ -1,7 +1,7 @@
 package com.example.springwebsocket.controller;
 
 import com.example.springwebsocket.controller.dto.SendMessageRequest;
-import com.example.springwebsocket.service.MemberChattingRoomService;
+import com.example.springwebsocket.service.ChattingService;
 import com.example.springwebsocket.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class MessageController {
+public class ChattingController {
 
     private final SimpMessagingTemplate template;
 
     private final MessageService messageService;
-    private final MemberChattingRoomService memberChattingRoomService;
+    private final ChattingService chattingService;
 
     @MessageMapping("/message/{chattingRoomId}")
     @SendTo("/sub/{chattingRoomId}")
@@ -30,11 +30,11 @@ public class MessageController {
         messageService.saveMessage(chattingRoomId, sendMessageRequest.getMemberId(), sendMessageRequest.getMessage());
     }
 
-    @MessageMapping("/message/entrance/{chattingRoomId")
+    @MessageMapping("/entrance/{chattingRoomId")
     public void enterChattingRoom(@DestinationVariable Long chattingRoomId,
                                   @Payload SendMessageRequest sendMessageRequest) {
 
-        String enteredMember = memberChattingRoomService.enterRoom(chattingRoomId, sendMessageRequest.getMemberId());
+        String enteredMember = chattingService.enterRoom(chattingRoomId, sendMessageRequest.getMemberId());
         template.convertAndSend("/sub/" + chattingRoomId, enteredMember + "님이 입장 했습니다.");
     }
 }

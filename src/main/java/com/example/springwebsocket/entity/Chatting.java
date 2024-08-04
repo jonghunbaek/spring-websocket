@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class MemberChattingRoom {
+public class Chatting {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,7 @@ public class MemberChattingRoom {
     private ChattingRoom chattingRoom;
 
     @Builder
-    private MemberChattingRoom(Member member, ChattingRoom chattingRoom) {
+    private Chatting(Member member, ChattingRoom chattingRoom) {
         this.member = member;
         this.chattingRoom = chattingRoom;
     }

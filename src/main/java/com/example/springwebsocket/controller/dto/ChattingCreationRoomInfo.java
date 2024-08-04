@@ -3,7 +3,7 @@ package com.example.springwebsocket.controller.dto;
 import lombok.Getter;
 
 @Getter
-public class ChattingRoomCreationInfo {
+public class ChattingCreationRoomInfo {
 
     private String name;
     private int capacity;
