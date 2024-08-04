@@ -1,6 +1,6 @@
 package com.example.springwebsocket.controller;
 
-import com.example.springwebsocket.controller.dto.ChattingCreationRoomInfo;
+import com.example.springwebsocket.controller.dto.ChattingRoomCreationInfo;
 import com.example.springwebsocket.service.ChattingRoomService;
 import com.example.springwebsocket.service.dto.ChattingRoomInfo;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +16,8 @@ public class ChattingRoomController {
     private final ChattingRoomService chattingRoomService;
 
     @PostMapping
-    public void createChattingRoom(@RequestBody ChattingCreationRoomInfo chattingCreationRoomInfo) {
-        chattingRoomService.createChattingRoom(chattingCreationRoomInfo.getName(), chattingCreationRoomInfo.getCapacity());
+    public void createChattingRoom(@RequestBody ChattingRoomCreationInfo chattingRoomCreationInfo) {
+        chattingRoomService.createChattingRoom(chattingRoomCreationInfo.getName(), chattingRoomCreationInfo.getCapacity());
     }
 
     @GetMapping
