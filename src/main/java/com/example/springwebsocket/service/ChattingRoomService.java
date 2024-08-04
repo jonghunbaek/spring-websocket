@@ -50,6 +50,8 @@ public class ChattingRoomService {
         return member.getName();
     }
 
+    // TODO :: 현재 구조가 이상함. MemberChattingRoom을 다시 살리고 Chatting은 별도로 사용해야 할듯
+    //  -> 채팅방 입장, 퇴장에 대해 식별할 수 있는 테이블이 없음
     public String leaveRoom(Long chattingRoomId, Long memberId) {
         ChattingRoom chattingRoom = findChattingRoomById(chattingRoomId);
         Member member = findMemberById(memberId);
