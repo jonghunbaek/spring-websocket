@@ -1,10 +1,10 @@
 package com.example.springwebsocket.service;
 
-import com.example.springwebsocket.entity.Chatting;
 import com.example.springwebsocket.entity.ChattingRoom;
 import com.example.springwebsocket.entity.Member;
-import com.example.springwebsocket.repository.ChattingRepository;
+import com.example.springwebsocket.entity.MemberChattingRoom;
 import com.example.springwebsocket.repository.ChattingRoomRepository;
+import com.example.springwebsocket.repository.MemberChattingRoomRepository;
 import com.example.springwebsocket.repository.MemberRepository;
 import com.example.springwebsocket.service.dto.ChattingRoomInfo;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ChattingRoomService {
 
     private final ChattingRoomRepository chattingRoomRepository;
-    private final ChattingRepository chattingRepository;
+    private final MemberChattingRoomRepository memberChattingRoomRepository;
     private final MemberRepository memberRepository;
 
     public void createChattingRoom(String roomName, int capacity) {
@@ -40,23 +40,19 @@ public class ChattingRoomService {
         ChattingRoom chattingRoom = findChattingRoomById(chattingRoomId);
         Member member = findMemberById(memberId);
 
-        Chatting chatting = Chatting.builder()
+        memberChattingRoomRepository.save(MemberChattingRoom.builder()
                 .member(member)
                 .chattingRoom(chattingRoom)
-                .build();
-
-        chattingRepository.save(chatting);
+                .build());
 
         return member.getName();
     }
 
-    // TODO :: 현재 구조가 이상함. MemberChattingRoom을 다시 살리고 Chatting은 별도로 사용해야 할듯
-    //  -> 채팅방 입장, 퇴장에 대해 식별할 수 있는 테이블이 없음
     public String leaveRoom(Long chattingRoomId, Long memberId) {
-        ChattingRoom chattingRoom = findChattingRoomById(chattingRoomId);
-        Member member = findMemberById(memberId);
+        memberChattingRoomRepository.deleteByChattingRoomIdAndMemberId(chattingRoomId, memberId);
 
-        return null;
+        return findMemberById(memberId)
+                .getName();
     }
 
     private Member findMemberById(Long memberId) {

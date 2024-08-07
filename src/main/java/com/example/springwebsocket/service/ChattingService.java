@@ -29,6 +29,7 @@ public class ChattingService {
                 .content(message)
                 .member(member)
                 .chattingRoom(chattingRoom)
-                .build());
+                .build()
+        );
     }
 }
