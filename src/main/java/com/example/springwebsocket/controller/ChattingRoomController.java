@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/chat/rooms")
+@RequestMapping("/chatting-rooms")
 @RequiredArgsConstructor
 @RestController
 public class ChattingRoomController {
@@ -45,6 +45,6 @@ public class ChattingRoomController {
                                  @Payload SendMessageRequest sendMessageRequest) {
 
         String exitedMember = chattingRoomService.leaveRoom(chattingRoomId, sendMessageRequest.getMemberId());
-        template.convertAndSend("/sub/" + chattingRoomId, exitedMember + "님이 채팅방을 나갔습니다.");
+        template.convertAndSend("/sub/" + chattingRoomId, exitedMember + "님이 퇴장 했습니다.");
     }
 }
