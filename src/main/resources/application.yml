@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: spring-websocket
+
+  # DB ??
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/chatting
+    username: chatting
+    password: Zxcv1234!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
