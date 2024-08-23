@@ -2,11 +2,11 @@ spring:
   application:
     name: spring-websocket
 
-  # DB ??
+  # DB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/chatting
-    username: chatting
+    url: jdbc:mysql://localhost:3307/chat
+    username: chat
     password: Zxcv1234!
   jpa:
     hibernate:
