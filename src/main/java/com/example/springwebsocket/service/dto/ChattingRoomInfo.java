@@ -1,7 +1,9 @@
 package com.example.springwebsocket.service.dto;
 
 import com.example.springwebsocket.entity.ChattingRoom;
+import lombok.Getter;
 
+@Getter
 public class ChattingRoomInfo {
 
     private Long roomId;
